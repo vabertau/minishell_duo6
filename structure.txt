@@ -1,0 +1,5 @@
+make && valgrind --track-fds=yes --trace-children=yes --leak-check=full --show-leak-kinds=all --track-origins=yes --suppressions=readline.supp ./minishell
+
+export A=hey☃export A B=Hola D E C="Que Tal"☃echo $PROUT$B$C > a > b > c☃cat a☃cat b☃cat c
+
+	
