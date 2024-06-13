@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   checks.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hedi <hedi@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: vabertau <vabertau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 13:33:51 by vabertau          #+#    #+#             */
-/*   Updated: 2024/05/08 19:42:21 by hedi             ###   ########.fr       */
+/*   Updated: 2024/06/13 14:11:34 by vabertau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	check_empty(t_data *data)
 	cmdline = data->cmdline;
 	while (cmdline[i])
 	{
-		if (cmdline[i] == ' ')
+		if (cmdline[i] == ' ' || cmdline[i] == '\t')
 			i++;
 		else
 			return ;
