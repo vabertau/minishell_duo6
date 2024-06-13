@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redir.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vabertau <vabertau@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hzaz <hzaz@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 21:03:31 by hedi              #+#    #+#             */
-/*   Updated: 2024/06/12 18:34:32 by vabertau         ###   ########.fr       */
+/*   Updated: 2024/06/13 09:54:36 by hzaz             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,9 +94,7 @@ void	fill_redir_heredoc(t_data *shell, int *cpt, t_token *redir)
 	int		fd;
 	char	*line;
 	char	*full_path;
-	int		mem_stdin;
 
-	mem_stdin = dup(STDIN_FILENO);
 	heredoc_signals();
 	full_path = join_free2("/tmp/heredoc_", ft_itoa((*cpt)++));
 	fd = safe_open(full_path, O_RDWR | O_CREAT | O_TRUNC, 0600, shell);
@@ -113,7 +111,6 @@ void	fill_redir_heredoc(t_data *shell, int *cpt, t_token *redir)
 		free(line);
 		line = readline("> ");
 	}
-	dup2(mem_stdin, STDIN_FILENO);
 	redir->word = ft_strdup(full_path);
 	if (!shell->fullpath_tf)
 		malloc_fullpath_tf(shell);

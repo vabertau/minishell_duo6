@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   dir.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vabertau <vabertau@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hzaz <hzaz@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 00:46:16 by hedi              #+#    #+#             */
-/*   Updated: 2024/06/03 15:40:43 by vabertau         ###   ########.fr       */
+/*   Updated: 2024/06/13 09:53:17 by hzaz             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,17 @@ int	ft_cd(char **split_cmd, t_data *shell)
 		free(tmp);
 		return (1);
 	}
-	tmp2 = join_free2("PWD=", getcwd(NULL, 0));
+	tmp2 = getcwd(NULL, 0);
+	if (!tmp2)
+	{
+		if ((!ft_strcmp(split_cmd[1], "..") || !ft_strcmp(split_cmd[1], "../")))
+		{
+			perror("cd: error retrieving current directory: getcwd: cannot access parent directories: No such file or directory");
+			tmp2 = ft_strjoin( get_var("PWD",shell)->var, "/..");
+		}
+	}
+	else
+		tmp2 = join_free2("PWD=", tmp2);
 	if (var_in_env(tmp,shell) > -1)
 		ft_update_env(tmp, shell, var_in_env(tmp,shell));
 	else
