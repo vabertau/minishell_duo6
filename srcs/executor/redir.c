@@ -6,7 +6,7 @@
 /*   By: hzaz <hzaz@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 21:03:31 by hedi              #+#    #+#             */
-/*   Updated: 2024/06/13 09:54:36 by hzaz             ###   ########.fr       */
+/*   Updated: 2024/06/13 10:15:12 by hzaz             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ void	handle_input_redirection(t_token *redir, t_data *shell)
 	}
 	safe_dup2(redir->fd, STDIN_FILENO, shell);
 	safe_close(redir->fd, shell);
+	if (redir->type == LEFT2)
+		unlink(redir->word);
 }
 
 void	handle_output_redirection(t_token *redir, t_data *shell)
