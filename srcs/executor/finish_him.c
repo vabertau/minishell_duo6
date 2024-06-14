@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   finish_him.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hzaz <hzaz@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: vabertau <vabertau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 21:08:17 by hedi              #+#    #+#             */
-/*   Updated: 2024/06/01 17:35:00 by hzaz             ###   ########.fr       */
+/*   Updated: 2024/06/14 19:11:29 by vabertau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -146,10 +146,16 @@ void	exec_cmd(t_data *shell, t_exec *cmd)
 
 	code = 0;
 	f = cmd->split_cmd;
+	if (!f[0])
+		return ; // added to fix leaks on echo lol | > lol because
+	// there is no split_cmd in second command
+	// it should not enter f
 	if (f[0] && f[0][0] == ':' && !f[0][1])
 		exit_free(shell, 0);
 	handle_redirections(cmd, shell);
-	if (f[0][0] == '.' && f[0][1]=='/')
+	if (!f[0])
+		return ;
+	if (f[0] && f[0][0] == '.' && f[0][1]=='/')
 	{
         if (access(f[0], F_OK) != 0)
         {

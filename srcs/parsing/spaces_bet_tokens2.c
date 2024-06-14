@@ -6,7 +6,7 @@
 /*   By: vabertau <vabertau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/12 12:51:15 by vabertau          #+#    #+#             */
-/*   Updated: 2024/06/14 17:48:52 by vabertau         ###   ########.fr       */
+/*   Updated: 2024/06/14 18:36:18 by vabertau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,10 @@ int	fixed_cmdline_len(char *cmdline)
 		if (cmdline[i] == '<' || cmdline[i] == '>' || cmdline[i] == '|')
 		{
 			if (i > 0 && cmdline[i - 1] != '<' && cmdline[i - 1] != '>'
-				&& cmdline[i - 1] != '|' && cmdline[i - 1] != ' ')
+				/*&& cmdline[i - 1] != '|'*/ && cmdline[i - 1] != ' ')
 				ret++;
-			if (cmdline[i + 1] != '<' && cmdline[i + 1] != '>' && cmdline[i
-					+ 1] != '|' && cmdline[i + 1] != ' ')
+			if (cmdline[i + 1] != '<' && cmdline[i + 1] != '>' /*&& cmdline[i
+					+ 1] != '|'*/ && cmdline[i + 1] != ' ')
 				ret++;
 		}
 		i++;
@@ -43,7 +43,7 @@ int	fixed_cmdline_len(char *cmdline)
  */
 int	add_space_bf(int i, char *ret, char *tmp)
 {
-	if (i > 0 && ret[i - 1] != '<' && ret[i - 1] != '>' && ret[i - 1] != '|'
+	if (i > 0 && ret[i - 1] != '<' && ret[i - 1] != '>' /*&& ret[i - 1] != '|'*/
 		&& ret[i - 1] != ' ')
 	{
 		ft_strlcpy(&(ret[i + 1]), &(tmp[i]), ft_strlen(&(ret[i])) + 1);
@@ -58,8 +58,8 @@ int	add_space_bf(int i, char *ret, char *tmp)
  */
 void	add_space_af(int i, int sp_bf, char *ret, char *tmp)
 {
-	if (tmp[i + 1] != '<' && tmp[i + 1] != '>' && tmp[i + 1] != '|'
-		&& tmp[i + 1] != ' ')
+	if (tmp[i + 1] != '<' && tmp[i + 1] != '>' /*&& tmp[i + 1] != '|'*/
+		&& tmp[i + 1] != ' ') /*|| ((tmp[i + 1] == '<' || tmp[i + 1] == '>') && tmp[i] == '|'))*/
 	{
 		if (sp_bf == 1)
 		{
