@@ -6,7 +6,7 @@
 /*   By: vabertau <vabertau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 15:27:39 by vabertau          #+#    #+#             */
-/*   Updated: 2024/06/11 14:29:23 by vabertau         ###   ########.fr       */
+/*   Updated: 2024/06/14 19:57:38 by vabertau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ int	ft_exit(char **split_cmd, t_data *data)
 		exit_free(data, exit_status);
 	if (split_cmd[2])
 	{
-		ft_putstr_fd("exit: too many arguments", 2);
+		ft_putstr_fd("exit: too many arguments\n", 2);
 		exit_status = 1;
 		return (exit_status);
 	}
@@ -70,7 +70,7 @@ int	ft_exit(char **split_cmd, t_data *data)
 			exit_status = ft_atoi(split_cmd[1]);
 		if (split_cmd[1] != NULL && !str_is_num(split_cmd[1]))
 		{
-			ft_putstr_fd("exit: numeric argument required", 2);
+			ft_putstr_fd("exit: numeric argument required\n", 2);
 			exit_status = 2;
 		}
 	}
