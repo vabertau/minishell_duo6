@@ -6,13 +6,14 @@
 /*   By: vabertau <vabertau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 13:59:10 by vabertau          #+#    #+#             */
-/*   Updated: 2024/06/11 16:00:22 by vabertau         ###   ########.fr       */
+/*   Updated: 2024/06/14 17:26:38 by vabertau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-/* Added for $unexisting expands : it creates a \0 chain in split_cmd that need to
+/* Added for $unexisting expands : it creates a \0 chain in
+split_cmd that need to
 be removed. If not $unexisting tries to execute \0 chain and prints command
 not found */
 void	rm_nullcmd(t_data *data)

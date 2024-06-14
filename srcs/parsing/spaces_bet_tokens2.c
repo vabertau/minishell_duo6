@@ -6,7 +6,7 @@
 /*   By: vabertau <vabertau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/12 12:51:15 by vabertau          #+#    #+#             */
-/*   Updated: 2024/05/28 20:56:01 by vabertau         ###   ########.fr       */
+/*   Updated: 2024/06/14 17:48:52 by vabertau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	fixed_cmdline_len(char *cmdline)
 
 	i = 0;
 	ret = 0;
-	while (cmdline[i]) // missing cond on data
+	while (cmdline[i])
 	{
 		i += skip_sq(&(cmdline[i]));
 		if (!cmdline[i])
@@ -36,4 +36,42 @@ int	fixed_cmdline_len(char *cmdline)
 		i++;
 	}
 	return (ret + ft_strlen(cmdline));
+}
+
+/* Searches for a missing space before a special character,
+	and adds it if it is missing
+ */
+int	add_space_bf(int i, char *ret, char *tmp)
+{
+	if (i > 0 && ret[i - 1] != '<' && ret[i - 1] != '>' && ret[i - 1] != '|'
+		&& ret[i - 1] != ' ')
+	{
+		ft_strlcpy(&(ret[i + 1]), &(tmp[i]), ft_strlen(&(ret[i])) + 1);
+		ret[i] = ' ';
+		return (1);
+	}
+	return (0);
+}
+
+/* Searches for a missing space after a special character,
+	and adds it if it is missing
+ */
+void	add_space_af(int i, int sp_bf, char *ret, char *tmp)
+{
+	if (tmp[i + 1] != '<' && tmp[i + 1] != '>' && tmp[i + 1] != '|'
+		&& tmp[i + 1] != ' ')
+	{
+		if (sp_bf == 1)
+		{
+			ft_strlcpy(&(ret[i + 3]), &(tmp[i + 1]), ft_strlen(&tmp[i + 1])
+				+ 1);
+			ret[i + 2] = ' ';
+		}
+		else
+		{
+			ft_strlcpy(&(ret[i + 2]), &(tmp[i + 1]), ft_strlen(&(tmp[i + 1]))
+				+ 1);
+			ret[i + 1] = ' ';
+		}
+	}
 }

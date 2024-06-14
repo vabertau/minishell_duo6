@@ -6,7 +6,7 @@
 /*   By: vabertau <vabertau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/12 14:02:12 by vabertau          #+#    #+#             */
-/*   Updated: 2024/06/12 18:08:39 by vabertau         ###   ########.fr       */
+/*   Updated: 2024/06/14 17:26:58 by vabertau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 /*added to count nb of heredoc to malloc a double chain containing all
 the full_pathes
 of heredoc to free them after*/
-int		nb_heredoc(t_data *data)
+int	nb_heredoc(t_data *data)
 {
 	t_token	*tmp_token;
 	int		i;

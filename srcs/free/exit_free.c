@@ -6,26 +6,11 @@
 /*   By: vabertau <vabertau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/11 15:02:38 by vabertau          #+#    #+#             */
-/*   Updated: 2024/06/12 18:15:37 by vabertau         ###   ########.fr       */
+/*   Updated: 2024/06/14 17:54:07 by vabertau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
-
-void	free_redir(t_exec *tmp_exec)
-{
-	t_token	*tmp_redir;
-	t_token	*to_free;
-
-	tmp_redir = tmp_exec->redir;
-	to_free = tmp_exec->redir;
-	while (tmp_redir)
-	{
-		tmp_redir = tmp_redir->next;
-		free(to_free);
-		to_free = tmp_redir;
-	}
-}
 
 void	free_exec(t_data *data)
 {
@@ -35,8 +20,6 @@ void	free_exec(t_data *data)
 	tmp_exec = data->exec;
 	while (tmp_exec)
 	{
-		/*if (tmp_exec->redir)
-			free(tmp_exec->redir);*/
 		free_redir(tmp_exec);
 		if (tmp_exec->full_cmd)
 			free(tmp_exec->full_cmd);

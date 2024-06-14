@@ -6,7 +6,7 @@
 /*   By: vabertau <vabertau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 13:05:07 by hzaz              #+#    #+#             */
-/*   Updated: 2024/06/12 18:10:22 by vabertau         ###   ########.fr       */
+/*   Updated: 2024/06/14 17:54:42 by vabertau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,6 +132,8 @@ char				**ft_quotesplit(t_data *data, char const *s);
 int					copy_bet_sq(int *i, int *j, const char *s, char *tmp);
 int					copy_bet_dq(int *i, int *j, const char *s, char *tmp);
 void				fill_types(t_data *data);
+int					add_space_bf(int i, char *ret, char *tmp);
+void				add_space_af(int i, int sp_bf, char *ret, char *tmp);
 
 // ===== PARSER =====
 
@@ -163,6 +165,7 @@ void				free_all(t_data *data);
 void				free_token(t_token *token);
 void				free_env(t_data *shell);
 int					nb_heredoc(t_data *data);
+void				free_redir(t_exec *tmp_exec);
 
 // ====== BUILTINS ======
 

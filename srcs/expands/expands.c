@@ -6,7 +6,7 @@
 /*   By: vabertau <vabertau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 18:46:03 by vabertau          #+#    #+#             */
-/*   Updated: 2024/06/11 16:09:43 by vabertau         ###   ########.fr       */
+/*   Updated: 2024/06/14 17:24:20 by vabertau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,6 +133,12 @@ Iterates through all the characters of a word
 If character is a $ and its an expand
 
 gets in len_var the len of the variable: ft_strlen but alnum, _ or ?
+
+if (!word || ft_strlen(word) < i + 1 || !word[i])
+			break ; fixes invalid read on echo $?. !word[0] is necessary
+			for echo $hola, unexisting variable, word is empty,
+			replace by ft_strlen(word) < i+1 fixes uninitialized value for echo
+			 [$unexisting, word and word[0] exists but word[i] is uninitialized
 */
 
 void	launch_expand(t_data *data, t_token *token)
@@ -152,8 +158,7 @@ void	launch_expand(t_data *data, t_token *token)
 			i += len_var - 1;
 		}
 		if (!word || ft_strlen(word) < i + 1 || !word[i])
-			break ; // fixes invalid read on echo $?. !word[0] is necessary for echo $hola, unexisting variable, word is empty,
-			//replace by ft_strlen(word) < i+1 fixes uninitialized value for echo [$unexisting, word and word[0] exists but word[i] is uninitialized
+			break ;
 		i++;
 	}
 	token->word = word;

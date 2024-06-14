@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit_free2.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hzaz <hzaz@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: vabertau <vabertau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/12 12:44:07 by vabertau          #+#    #+#             */
-/*   Updated: 2024/05/14 12:38:02 by hzaz             ###   ########.fr       */
+/*   Updated: 2024/06/14 17:54:15 by vabertau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,5 +48,20 @@ void	free_env(t_data *shell)
 			free(shell->env->var_name);
 		free(shell->env);
 		shell->env = tmp;
+	}
+}
+
+void	free_redir(t_exec *tmp_exec)
+{
+	t_token	*tmp_redir;
+	t_token	*to_free;
+
+	tmp_redir = tmp_exec->redir;
+	to_free = tmp_exec->redir;
+	while (tmp_redir)
+	{
+		tmp_redir = tmp_redir->next;
+		free(to_free);
+		to_free = tmp_redir;
 	}
 }

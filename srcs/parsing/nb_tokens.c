@@ -6,7 +6,7 @@
 /*   By: vabertau <vabertau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 17:42:01 by vabertau          #+#    #+#             */
-/*   Updated: 2024/05/29 13:40:00 by vabertau         ###   ########.fr       */
+/*   Updated: 2024/06/14 17:26:11 by vabertau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,12 +31,10 @@ static int	skip_ns(char *cmdline)
 	{
 		if (i != 0)
 		{
-			if ((cmdline[i] == '\'') && ft_strchr(&(cmdline[i + 1]),
-					'\''))
-					i += skip_sq(&(cmdline[i]));
-			if ((cmdline[i] == '\"') && ft_strchr(&(cmdline[i + 1]),
-					'\"'))
-					i += skip_dq(&(cmdline[i]));
+			if ((cmdline[i] == '\'') && ft_strchr(&(cmdline[i + 1]), '\''))
+				i += skip_sq(&(cmdline[i]));
+			if ((cmdline[i] == '\"') && ft_strchr(&(cmdline[i + 1]), '\"'))
+				i += skip_dq(&(cmdline[i]));
 		}
 		i++;
 	}
@@ -67,12 +65,12 @@ void	nb_tokens(t_data *data)
 					'\''))
 				i += skip_sq(&(data->cmdline[i]));
 			if (!data->cmdline[i])
-			break ;
+				break ;
 			if ((data->cmdline[i] == '\"') && ft_strchr(&(data->cmdline[i + 1]),
 					'\"'))
 				i += skip_dq(&(data->cmdline[i]));
 			if (!data->cmdline[i])
-			break ;
+				break ;
 			i += skip_ns(&(data->cmdline[i]));
 		}
 	}

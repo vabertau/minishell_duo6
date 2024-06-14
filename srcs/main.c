@@ -6,7 +6,7 @@
 /*   By: vabertau <vabertau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 16:54:44 by vabertau          #+#    #+#             */
-/*   Updated: 2024/06/11 16:03:00 by vabertau         ###   ########.fr       */
+/*   Updated: 2024/06/14 17:21:30 by vabertau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ void	trim_env(t_data *shell)
 	int		i;
 
 	tmp = shell->env;
-	while (shell->env != NULL && shell->envp[0] )
+	while (shell->env != NULL && shell->envp[0])
 	{
 		i = 0;
 		while (shell->env->var[i] && shell->env->var[i] != '=')
