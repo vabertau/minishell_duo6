@@ -6,7 +6,7 @@
 /*   By: vabertau <vabertau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 15:27:39 by vabertau          #+#    #+#             */
-/*   Updated: 2024/06/14 19:57:38 by vabertau         ###   ########.fr       */
+/*   Updated: 2024/06/15 17:26:29 by vabertau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,9 +60,8 @@ int	ft_exit(char **split_cmd, t_data *data)
 		exit_free(data, exit_status);
 	if (split_cmd[2])
 	{
-		ft_putstr_fd("exit: too many arguments\n", 2);
 		exit_status = 1;
-		return (exit_status);
+		return (ft_putstr_fd("exit: too many arguments\n", 2), exit_status);
 	}
 	else
 	{
@@ -75,11 +74,10 @@ int	ft_exit(char **split_cmd, t_data *data)
 		}
 	}
 	if (exit_status < 0)
-        exit_status = 256 + (exit_status % 256);
-    else
+		exit_status = 256 + (exit_status % 256);
+	else
 		exit_status = exit_status % 256;
-	exit_free(data, exit_status);
-	return (exit_status);
+	return (exit_free(data, exit_status), exit_status);
 }
 
 /*

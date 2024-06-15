@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env4.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hzaz <hzaz@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: vabertau <vabertau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 11:34:46 by vabertau          #+#    #+#             */
-/*   Updated: 2024/06/01 19:45:42 by hzaz             ###   ########.fr       */
+/*   Updated: 2024/06/15 17:24:40 by vabertau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ int	var_in_env(char *s, t_data *shell)
 		perror("malloc");
 		exit_free(shell, EXIT_FAILURE);
 	}
-
 	ret = -1;
 	tmp = shell->env;
 	while (tmp)
@@ -32,16 +31,14 @@ int	var_in_env(char *s, t_data *shell)
 		if (tmp->var_name && !ft_strcmp(tmp->var_name, var[0]))
 		{
 			ret = tmp->index;
-			break;
+			break ;
 		}
 		tmp = tmp->next;
 	}
-
 	free(var[0]);
 	if (var[1])
 		free(var[1]);
-	free(var);
-	return (ret);
+	return (free(var), ret);
 }
 
 t_env	*initialize_new_node(char **str)
@@ -70,8 +67,6 @@ t_env	*initialize_new_node(char **str)
 	return (new_node);
 }
 
-
-
 void	add_to_env(t_env *new_node, t_data *shell)
 {
 	t_env	*e;
@@ -90,6 +85,7 @@ void	add_to_env(t_env *new_node, t_data *shell)
 		new_node->index = e->index + 1;
 	}
 }
+
 void	ft_add_env(char *s, t_data *shell)
 {
 	char	**str;
@@ -108,8 +104,6 @@ void	ft_add_env(char *s, t_data *shell)
 	free(str);
 }
 
-
-
 int	ft_putenv(char *s, t_data *shell)
 {
 	int	pos;
@@ -125,5 +119,3 @@ int	ft_putenv(char *s, t_data *shell)
 	}
 	return (1);
 }
-
-

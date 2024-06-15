@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env5.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hzaz <hzaz@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: vabertau <vabertau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 13:18:55 by hzaz              #+#    #+#             */
-/*   Updated: 2024/06/01 14:49:27 by hzaz             ###   ########.fr       */
+/*   Updated: 2024/06/15 17:24:59 by vabertau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ int	validate_and_add_var(char *var, t_data *shell)
 		ft_putstr_fd_free(join_free1(tmp, "': not a valid identifier\n"), 2);
 		result = 1;
 	}
-	else 
+	else
 	{
 		if (ft_putenv(var, shell) != 1)
 		{
