@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hzaz <hzaz@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: vabertau <vabertau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 16:54:44 by vabertau          #+#    #+#             */
-/*   Updated: 2024/06/15 16:04:53 by hzaz             ###   ########.fr       */
+/*   Updated: 2024/06/15 16:20:54 by vabertau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
+
 /*
 void	aff_val(t_data *data)
 {
@@ -75,54 +76,6 @@ void	set_char_env(t_data *shell)
 }
 */
 
-void	check_pwd(t_data *shell)
-{
-	char *val;
-	char	*val2;
-
-	if (var_in_env("PWD", shell) < 0)
-	{
-		val2 = getcwd(NULL, 0);
-		if (val2)
-			val = join_free2("PWD=", val2);
-		else
-			val = ft_strdup("PWD");
-		ft_add_env(val, shell);
-		free(val);
-	}
-	if (var_in_env("OLDPWD", shell) < 0)
-	{
-		val = ft_strdup("OLDPWD");
-		ft_add_env(val, shell);
-		free(val);
-	}
-
-}
-void	trim_env(t_data *shell)
-{
-	t_env	*tmp;
-	int		i;
-
-	tmp = shell->env;
-	while (shell->env != NULL && shell->envp[0])
-	{
-		i = 0;
-		while (shell->env->var[i] && shell->env->var[i] != '=')
-			i++;
-		shell->env->var_name = ft_strndup(shell->env->var, i);
-		if (!shell->env->var_name)
-			perror("malloc");
-		if (!shell->env->var[i++])
-			return ;
-		shell->env->val = ft_strdup(shell->env->var + i);
-		if (!shell->env->val)
-			perror("malloc");
-		shell->env = shell->env->next;
-	}
-	shell->env = tmp;
-	check_pwd(shell);
-}
-
 t_env	*create_new_env_node(char *env_var, int index)
 {
 	t_env	*new_node;
@@ -141,15 +94,20 @@ t_env	*create_new_env_node(char *env_var, int index)
 	return (new_node);
 }
 
+void	init_copy_envp(int *i, t_env **tmp, t_env **head)
+{
+	*i = -1;
+	*tmp = NULL;
+	*head = NULL;
+}
+
 t_env	*copy_envp(char **envp, t_data *shell)
 {
 	t_env	*head;
 	t_env	*tmp;
 	int		i;
 
-	i = -1;
-	tmp = NULL;
-	head = NULL;
+	init_copy_envp(&i, &tmp, &head);
 	while (envp[++i])
 	{
 		if (tmp == NULL)
@@ -205,7 +163,7 @@ int	main(int argc, char **argv, char **envp)
 		main_signals();
 		init_data(&data);
 		minishell_loop(&data);
-		//aff_val(&data);
+		// aff_val(&data);
 		free_all(&data);
 	}
 	return (0);
@@ -1035,7 +993,6 @@ int	main(int argc, char **argv, char **envp)
 	exit_free(&data, 0); //tmp
 }
 */
-
 
 /*
 int	main(int argc, char **argv, char **envp)

@@ -6,7 +6,7 @@
 /*   By: vabertau <vabertau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 13:05:07 by hzaz              #+#    #+#             */
-/*   Updated: 2024/06/14 17:54:42 by vabertau         ###   ########.fr       */
+/*   Updated: 2024/06/15 16:22:09 by vabertau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -180,6 +180,8 @@ char				*join_free1(char const *s1, char const *s2);
 void				set_char_env(t_data *shell);
 int					len_env(t_env *env);
 void				aff_val(t_data *data);
+void				check_pwd(t_data *shell);
+void				trim_env(t_data *shell);
 
 // Prototypes des fonctions de gestion de redirection
 void				handle_input_redirection(t_token *redir, t_data *shell);
