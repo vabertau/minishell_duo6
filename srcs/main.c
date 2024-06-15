@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vabertau <vabertau@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hzaz <hzaz@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 16:54:44 by vabertau          #+#    #+#             */
-/*   Updated: 2024/06/14 17:21:30 by vabertau         ###   ########.fr       */
+/*   Updated: 2024/06/15 16:04:53 by hzaz             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,30 @@ void	set_char_env(t_data *shell)
 	shell->char_env[i] = NULL;
 }
 */
+
+void	check_pwd(t_data *shell)
+{
+	char *val;
+	char	*val2;
+
+	if (var_in_env("PWD", shell) < 0)
+	{
+		val2 = getcwd(NULL, 0);
+		if (val2)
+			val = join_free2("PWD=", val2);
+		else
+			val = ft_strdup("PWD");
+		ft_add_env(val, shell);
+		free(val);
+	}
+	if (var_in_env("OLDPWD", shell) < 0)
+	{
+		val = ft_strdup("OLDPWD");
+		ft_add_env(val, shell);
+		free(val);
+	}
+
+}
 void	trim_env(t_data *shell)
 {
 	t_env	*tmp;
@@ -96,6 +120,7 @@ void	trim_env(t_data *shell)
 		shell->env = shell->env->next;
 	}
 	shell->env = tmp;
+	check_pwd(shell);
 }
 
 t_env	*create_new_env_node(char *env_var, int index)

@@ -6,7 +6,7 @@
 /*   By: hzaz <hzaz@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 00:46:16 by hedi              #+#    #+#             */
-/*   Updated: 2024/06/13 09:53:17 by hzaz             ###   ########.fr       */
+/*   Updated: 2024/06/15 15:50:56 by hzaz             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ int	ft_cd(char **split_cmd, t_data *shell)
 	tmp = ft_strjoin("OLDPWD=", get_var("PWD",shell)->val);
 	if (!split_cmd[1])
 	{
-		if (!var_in_env("HOME", shell))
+		if (var_in_env("HOME", shell) < 0)
 		{
 			perror("cd: HOME not set");
 			//free(tmp);
